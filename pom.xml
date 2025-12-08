@@ -9,18 +9,34 @@
     <name>java-springboot-flashcard</name>
 
     <description>Spring Boot Project Flashcard</description>
-    <url/>
+    <url>https://github.com/ebouchut-laplateforme/java-springboot-flashcard</url>
     <licenses>
-        <license/>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>manual</distribution>
+            <comments>A permissive license that allows reuse with minimal restrictions</comments>
+        </license>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <id>ebouchut</id>
+            <name>Eric Bouchut</name>
+            <url>https://github.com/ebouchut-laplateforme</url>
+            <organization>La Plateforme</organization>
+            <organizationUrl>https://laplateforme.io</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>maintainer</role>
+            </roles>
+            <timezone>Europe/Paris</timezone>
+        </developer>
     </developers>
     <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
+        <connection>scm:git:git://github.com/ebouchut-laplateforme/java-springboot-flashcard.git</connection>
+        <developerConnection>scm:git:ssh://github.com:ebouchut-laplateforme/java-springboot-flashcard.git</developerConnection>
+        <url>https://github.com/ebouchut-laplateforme/java-springboot-flashcard</url>
+        <tag>HEAD</tag>
     </scm>
 
     <parent>
