@@ -38,7 +38,6 @@
 
         <jacoco.version>0.8.12</jacoco.version>
         <surefire.version>3.5.2</surefire.version>
-        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <dependencies>
