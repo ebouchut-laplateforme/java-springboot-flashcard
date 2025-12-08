@@ -20,7 +20,8 @@ A Spring Boot application for flashcard functionality with user authentication a
 - **Spring Data JPA**: Data persistence
 - **Hibernate**: ORM
 - **Thymeleaf**: Template engine
-- **MySQL**: Database
+- **MySQL**: Database (production)
+- **H2**: In-memory database (testing)
 - **Lombok**: Boilerplate code reduction
 - **Maven**: Build tool
 - **JaCoCo**: Code coverage
@@ -29,8 +30,10 @@ A Spring Boot application for flashcard functionality with user authentication a
 
 - Java 17 or higher
 - Maven 3.6+ (or use included Maven wrapper)
-- MySQL 8.0+
+- MySQL 8.0+ (for running the application)
 - Git
+
+**Note**: MySQL is not required for running tests. Tests use an in-memory H2 database automatically.
 
 ## Getting Started
 
@@ -80,9 +83,13 @@ The application will start and automatically create/update database tables based
 
 ### Running Tests
 
+Tests use an in-memory H2 database and do not require MySQL to be running:
+
 ```bash
 ./mvnw test
 ```
+
+**Note**: Tests automatically use the `test` profile which is configured to use H2 instead of MySQL. No database setup or environment variables are required for testing.
 
 ### Run Specific Test
 
@@ -128,23 +135,29 @@ src/
 │       ├── application.yaml              # Application configuration
 │       └── templates/                    # Thymeleaf templates
 └── test/
-    └── java/                             # Test classes
+    ├── java/                             # Test classes
+    └── resources/
+        └── application-test.yaml         # Test configuration (H2 database)
 ```
 
 ## Configuration
 
 ### Application Properties
 
-Key configuration in `src/main/resources/application.yaml`:
-
+**Production** (`src/main/resources/application.yaml`):
 - **Database**: MySQL connection on `localhost:3380`
 - **JPA**: Hibernate with auto DDL update
 - **Logging**: DEBUG level for Hibernate SQL and application code
 - **Thymeleaf**: Template caching disabled for development
 
+**Test** (`src/test/resources/application-test.yaml`):
+- **Database**: H2 in-memory database (no setup required)
+- **JPA**: Hibernate with create-drop DDL (clean database for each test run)
+- **Logging**: Same as production for debugging test issues
+
 ### Environment Variables
 
-- `FLASHCARD_DB_PASSWORD`: MySQL database password (required)
+- `FLASHCARD_DB_PASSWORD`: MySQL database password (required for running the application, not needed for tests)
 
 ## Domain Model
 
@@ -169,15 +182,27 @@ Key configuration in `src/main/resources/application.yaml`:
 
 ## Testing
 
-The project uses:
-- Spring Boot Test
-- Spring Security Test
-- JaCoCo for code coverage
+### Test Infrastructure
 
-Coverage exclusions:
-- Application entry points
-- Exception classes
-- DTOs
+The project uses:
+- **Spring Boot Test**: Integration testing framework
+- **Spring Security Test**: Security testing support
+- **H2 Database**: In-memory database for tests (configured via `@ActiveProfiles("test")`)
+- **JaCoCo**: Code coverage reports
+
+### Test Configuration
+
+Tests automatically use a separate configuration profile:
+- Profile: `test` (activated via `@ActiveProfiles("test")` in test classes)
+- Database: H2 in-memory (no external database required)
+- Schema: Created and dropped automatically for each test run
+
+### Coverage Exclusions
+
+JaCoCo excludes the following from coverage reports:
+- Application entry points (`*Application.class`)
+- Exception classes (`**/exception/**/*`)
+- DTOs (`**/dto/**/*`, `**/*DTO.class`)
 
 ## Contributing
 
