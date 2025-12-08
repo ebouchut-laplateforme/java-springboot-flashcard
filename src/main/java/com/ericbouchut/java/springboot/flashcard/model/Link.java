@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table("link")
+@Table(name = "link")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
