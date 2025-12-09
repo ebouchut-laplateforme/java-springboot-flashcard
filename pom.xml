@@ -90,6 +90,8 @@
             <optional>true</optional>
             <version>${lombok.version}</version>
         </dependency>
+
+        <!-- MySQL Database client library -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -100,6 +102,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <!-- H2 Database for testing -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -112,6 +115,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
+        <!-- Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
