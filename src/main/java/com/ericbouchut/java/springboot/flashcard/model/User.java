@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -37,8 +38,8 @@ public class User {
     private String email;
 
     @Column(name = "password", nullable = false)
-    @NotBlank        // Required
-    @Min(value = 6L) // Min length 6 characters
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must contain at least 6 characters")
     @ToString.Exclude // toString() does NOT display the password
     private String password;
 
