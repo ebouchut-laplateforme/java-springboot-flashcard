@@ -1,6 +1,6 @@
 package com.ericbouchut.java.springboot.flashcard.controller;
 
-import com.ericbouchut.java.springboot.flashcard.dto.request.SignupForm;
+import com.ericbouchut.java.springboot.flashcard.dto.SignupForm;
 import com.ericbouchut.java.springboot.flashcard.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -23,9 +23,9 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //   Signup
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //   Signup (User registration)
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     /**
      * Display the user registration form.
@@ -39,11 +39,12 @@ public class AuthController {
     }
 
     /**
-     * Process the user registration form submission
-     * (aka. user registration).
+     * Process the user registration form.
      *
-     * @param signupForm the submitted signup form
-     * @return
+     * @param signupForm the submitted signup form object
+     * @param result TODO: learn and digest
+     * @param model the object used to exchange information with the signup form back and forth
+     * @return the sign-in form if the signup has been successful or the signup form otherwise (for example of the form is not valid).
      */
     @PostMapping("/signup")
     public String processUserRegistrationForm(
@@ -55,10 +56,18 @@ public class AuthController {
             return "signup";  // Re-display signup form with errors
         }
 
+        // Create the user
         userService.processUserRegistrationForm(signupForm);
 
         // Redirect to the sign-in page after a successful registration (signup)
         return "redirect:signin";
     }
 
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //   Sign-in (User login)
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // TODO: Display the signin form: Create REST endpoint: GET /signin
+
+    // TODO: Process the signin form: Create REST endpoint: POST /signin
 }

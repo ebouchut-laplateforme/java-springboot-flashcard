@@ -1,4 +1,4 @@
-package com.ericbouchut.java.springboot.flashcard.dto.request;
+package com.ericbouchut.java.springboot.flashcard.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
